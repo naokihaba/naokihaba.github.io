@@ -154,9 +154,14 @@ export const SITE_DESCRIPTION = 'サイトの説明';
 ## 🚀 デプロイ
 
 ### GitHub Pages
-1. リポジトリの Settings > Pages
-2. Source を GitHub Actions に設定
-3. `.github/workflows/deploy.yml` を作成（Astroの公式テンプレート使用）
+1. リポジトリの Settings > Pages に移動
+2. Source を **GitHub Actions** に設定
+3. mainブランチにコードをpushすると自動的にデプロイされます
+
+#### 必要なファイル
+- `.nojekyll` - Jekyllを無効化
+- `.github/workflows/deploy.yml` - GitHub Actionsワークフロー
+- `astro.config.mjs` - サイトURLの設定
 
 ### 手動ビルド
 ```bash
