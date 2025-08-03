@@ -2,13 +2,38 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../../consts';
 
-const talks = (await getCollection('talks')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const talks = [
+	{
+		title: ' 前職でNestJSを採用して得た体験からの学び',
+		url: 'https://speakerdeck.com/naokihaba/qian-zhi-tenestjswocai-yong-sitede-tati-yan-karanoxue-hi'
+	},
+	{
+		title: 'VueUse 5分で分かるVue.js開発の効率化術',
+		url: 'https://speakerdeck.com/naokihaba/vueuse-5fen-defen-karu-vue-dot-js-kai-fa-noxiao-lu-hua-shu'
+	},
+	{
+		title: 'unplugin-vue-routerで実現する Nuxt 風ファイルベースルーティング',
+		url: 'https://speakerdeck.com/naokihaba/unplugin-vue-routerteshi-xian-suru-nuxt-feng-huairuhesuruteinku'
+	},
+	{
+		title: 'Pinia Coladaが実現するスマートな非同期処理',
+		url: 'https://speakerdeck.com/naokihaba/pinia-colada-gashi-xian-surusumatonafei-tong-qi-chu-li'
+	},
+	{
+		title: 'Laravel + PHPStanで実現する堅実で静的解析入門',
+		url: 'https://speakerdeck.com/naokihaba/laravel-plus-phpstanteshi-merushi-jian-de-jing-de-jie-xi-ru-men'
+	},
+	{
+		title: 'WebからモバイルへVue.js × Capacitor活用事例',
+		url: 'https://speakerdeck.com/naokihaba/webkaramobairuhe-vue-dot-js-x-capacitor-huo-yong-shi-li'
+	},
+	{
+		title: '技術で挑む保育現場の課題解決 〜コドモンエンジニアの 開発スタイルと取り組み',
+		url: 'https://speakerdeck.com/naokihaba/ji-shu-tetiao-mubao-yu-xian-chang-noke-ti-jie-jue-kotomonensiniano-kai-fa-sutairutoqu-rizu-mi'
+	}
+];
 ---
 
 <!doctype html>
@@ -25,26 +50,9 @@ const talks = (await getCollection('talks')).sort(
 					{
 						talks.map((talk) => (
 							<li>
-								<a href={`/talks/${talk.id}/`}>
-									<h4 class="title">{talk.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={talk.data.date} />
-										{' - '}
-										{talk.data.event}
-									</p>
+								<a href={talk.url} target="_blank" rel="noopener noreferrer">
+									{talk.title}
 								</a>
-								<div class="links">
-									{talk.data.slideUrl && (
-										<a href={talk.data.slideUrl} target="_blank" rel="noopener noreferrer">
-											スライド
-										</a>
-									)}
-									{talk.data.videoUrl && (
-										<a href={talk.data.videoUrl} target="_blank" rel="noopener noreferrer">
-											動画
-										</a>
-									)}
-								</div>
 							</li>
 						))
 					}
@@ -60,22 +68,16 @@ const talks = (await getCollection('talks')).sort(
 		width: 960px;
 	}
 	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
+		list-style-type: disc;
+		margin: 1rem 0;
+		padding-left: 2rem;
 	}
 	ul li {
-		width: calc(50% - 1rem);
-	}
-	ul li * {
-		text-decoration: none;
-		transition: 0.2s ease;
+		margin-bottom: 0.5rem;
 	}
 	ul li a {
-		display: block;
+		color: rgb(var(--accent));
+		text-decoration: underline;
 	}
 	.title {
 		margin: 0;
