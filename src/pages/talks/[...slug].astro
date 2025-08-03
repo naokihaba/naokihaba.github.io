@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'talks'>;
 
 const talk = Astro.props;
-const { Content } = await talk.render();
+const { Content } = talk.rendered!;
 ---
 
 <!doctype html>
